@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+        stages{
+            stage("displayoutput"){
+                steps{
+                    echo"hello world"
+                }
+            }
+        }
+    
+}
