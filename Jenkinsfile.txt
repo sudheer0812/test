@@ -1,16 +1,25 @@
-pipeline{
+pipeline {
     agent any
-        stages{
-            stage("checkout from git"){
-                steps{
-                  git credentialsId: 'github', url: 'https://github.com/sudheer0812/test.git'
+    tools {
+  jdk 'JAVA_HOME'
+//  nodejs 'node16'
+}
+
+    stages {
+        stage('Check Java Path') {
+            steps {
+                script {
+                    // Ensure the correct JDK is configured
+                    // tool 'OpenJDK 17'
+                    // Print the Java path
+                    sh 'echo $JAVA_HOME'
                 }
             }
-            stage("displayoutput"){
-                steps{
-                    echo"hello world"
-                }
+        }
+        stage('Git Checckout') {
+            steps {
+                git credentialsId: 'github', url: 'https://github.com/sudheer0812/test.git'
             }
-        
-    
+        }
+    } 
 }
